@@ -6,6 +6,8 @@ Tech stack:
 
 - PHP v. 8.3
 - Docker
+- MySQL 9.1.0
+- Composer 2.4 (package manager for PHP)
 
 ## Hvordan bruke
 
@@ -16,8 +18,9 @@ docker compose up -d
 
 ## Nyttige kommandoer
 
+### 3 måter å vise kjørende containere
+
 ```shell
-# 3 måter å vise kjørende containere
 
 # 1. Vis alle kjørende containere på host
 docker ps
@@ -32,10 +35,11 @@ NAME                     IMAGE          COMMAND                  SERVICE   CREAT
 php-docker-stack-web-1   nginx:latest   "/docker-entrypoint.…"   web       6 minutes ago   Up 5 minutes   0.0.0.0:8080->80/tcp
 
 # 3. Se i Docker Desktop
+```
 
-###
+### bygge et image fra Dockerfile
 
-# bygge en image fra Dockerfile
+```shell
 docker build -t olepg:php8.3 -f php/Dockerfile .
 
 [+] Building 15.0s (7/7) FINISHED                                                          docker:desktop-linux
@@ -56,22 +60,31 @@ docker build -t olepg:php8.3 -f php/Dockerfile .
  => => naming to docker.io/library/olepg:php8.3                                                            0.0s
 
 View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/zldjbgqenju1xuz1b7fg5xhfl
+```
 
-# vis images på host
+### vis images på host
+
+```shell
 docker images
 
 REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
 olepg        php8.3    c6b675ca5e66   6 minutes ago   78.6MB
+```
 
-# slett alle "dangling" images
+### slett alle "dangling" images
+
+```shell
 docker image prune
+```
 
-# åpne shell i en container. Her vise nginx config fil
+### åpne shell i en container. Her vises f.eks. nginx config fil
+
+```shell
 docker exec -it php-docker-stack-web-1 sh
 
-# pwd
+pwd
 /
-# cat /etc/nginx/conf.d/default.conf
+cat /etc/nginx/conf.d/default.conf
 ```
 
 ```nginx
@@ -122,4 +135,15 @@ server {
 }
 
 #
+```
+
+### Vis working dir ved å exec inn i container og se hvilken katalog som kommer opp
+
+```shell
+
+docker exec -it php-docker-stack-app-1 sh
+
+/var/www/html #
+
+exit
 ```

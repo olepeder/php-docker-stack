@@ -12,7 +12,8 @@ services:
     build:
       dockerfile: ./php/Dockerfile
     volumes:
-      - ./app:/app
+      - /var/www/html/vendor
+      - ./app:/var/www/html
 
   # MySQL service
   db:
