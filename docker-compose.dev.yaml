@@ -1,8 +1,7 @@
 services:
   # Nginx service
   web:
-    build:
-      dockerfile: ./nginx/Dockerfile
+    image: nginx:latest
     ports:
       - '8080:80'
     volumes:
@@ -12,12 +11,16 @@ services:
   app:
     build:
       dockerfile: ./php/Dockerfile
+    volumes:
+      - ./app:/var/www/html
 
   # MySQL service
   db:
-    image: mysql:9.1.0
+    image: mysql:9.1
     volumes:
       - mysqldata:/var/lib/mysql
+    ports:
+      - '3306:3306'
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: secret

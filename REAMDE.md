@@ -147,3 +147,9 @@ docker exec -it php-docker-stack-app-1 sh
 
 exit
 ```
+
+### specify docker-compose fil
+
+```shell
+docker compose -f docker-compose.dev.yaml up --build -d
+```
