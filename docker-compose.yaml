@@ -1,0 +1,33 @@
+services:
+  # Nginx service
+  web:
+    image: nginx:latest
+    ports:
+      - '8080:80'
+    volumes:
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+
+  # PHP service
+  app:
+    build:
+      dockerfile: ./php/Dockerfile
+    volumes:
+      - ./app:/app
+
+  # MySQL service
+  db:
+    image: mysql:9.1.0
+    volumes:
+      - mysqldata:/var/lib/mysql
+    ports:
+      - '3306:3306'
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: docker-php
+      MYSQL_USER: user
+      MYSQL_PASSWORD: secret
+
+volumes:
+  # docker volume for MySQL data persistence
+  mysqldata:
