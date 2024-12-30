@@ -153,3 +153,26 @@ exit
 ```shell
 docker compose -f docker-compose.dev.yaml up --build -d
 ```
+
+### run PHP composer install in local app dir to install packages
+
+Flag --ignore-platform-reqs forteller installer at den skal ignore hva som er installert av php på local maskin. composer.json bestemmer hvilken php versjon den skal forholde seg til.
+
+Docs: <https://getcomposer.org/>
+
+```shell
+cd app
+
+composer install --ignore-platform-reqs
+
+# aktiver auto-load
+composer dump-autoload
+```
+
+### specify environment file
+
+Brukes bare hvis det ikke er .env fil (standard filnavn) som skal brukes
+
+```shell
+docker compose -f docker-compose.dev.yaml up --env-file .env --build -d
+```
