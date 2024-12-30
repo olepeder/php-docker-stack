@@ -19,6 +19,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
+      REDIS_HOST: cache
+      REDIS_PORT: ${REDIS_PORT}
 
   # MySQL service
   db:
@@ -33,6 +35,10 @@ services:
       MYSQL_DATABASE: docker-php
       MYSQL_USER: user
       MYSQL_PASSWORD: secret
+
+  # Redis service
+  cache:
+    image: redis:latest
 
 volumes:
   # docker volume for MySQL data persistence
