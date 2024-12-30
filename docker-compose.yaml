@@ -12,6 +12,7 @@ services:
   app:
     build:
       dockerfile: ./php/Dockerfile
+      target: app
 
   # MySQL service
   db:

@@ -176,3 +176,11 @@ Brukes bare hvis det ikke er .env fil (standard filnavn) som skal brukes
 ```shell
 docker compose -f docker-compose.dev.yaml up --env-file .env --build -d
 ```
+
+### send inn env variabler i forbindelse med docker compose
+
+```shell
+XDEBUG_MODE=debug docker compose -f docker-compose.dev.yaml up --env-file .env --build -d
+```
+
+Sjekk om debug mode er aktivert med å legge inn `xdebug_info();` i PHP koden
