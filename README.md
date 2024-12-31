@@ -206,3 +206,27 @@ olepg/docker-php       1.0       4904cbb815f4   17 hours ago   91.9MB
 
 docker push olepg/docker-php:1.0
 ```
+
+## Github Actions
+
+Merge til MAIN vil trigge:
+
+- kjør tester
+- bygg web og app images
+- login til docker hub
+- push images til hub
+
+- deploy code til running container host
+
+### Legg inn Hub creds i github
+
+Gå til Settings for repo, deretter "Secrets and variables" og Actions. Klikk så på "New Repo secret"
+
+Legg inn disse med egne verdier, innlogging til Docker hub:
+
+- DOCKER_USER
+- DOCKER_PASSWORD
+
+### Github folder (.github) med deploy yaml
+
+Opprett folder ".github" og i den folder "workflows". Lag deretter deploy.yaml
