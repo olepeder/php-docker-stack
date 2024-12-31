@@ -184,3 +184,25 @@ XDEBUG_MODE=debug docker compose -f docker-compose.dev.yaml up --env-file .env.l
 ```
 
 Sjekk om debug mode er aktivert med å legge inn `xdebug_info();` i PHP koden
+
+## Docker hub
+
+Login fra CLI
+
+```shell
+docker login -u <username>
+```
+
+Build container med tag (-t) for å identifisere og deretter push til registry
+
+```shell
+docker build --target app -t olepg/docker-php:1.0 -f ./php/Dockerfile .
+
+docker images
+
+REPOSITORY             TAG       IMAGE ID       CREATED        SIZE
+<none>                 <none>    f8dd265d701c   16 hours ago   92.6MB
+olepg/docker-php       1.0       4904cbb815f4   17 hours ago   91.9MB
+
+docker push olepg/docker-php:1.0
+```
